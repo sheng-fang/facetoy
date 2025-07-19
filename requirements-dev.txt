@@ -18,6 +18,8 @@ identify==2.6.12
     # via pre-commit
 iniconfig==2.1.0
     # via pytest
+isort==6.0.1
+    # via facetoy (pyproject.toml)
 mccabe==0.7.0
     # via flake8
 mypy==1.17.0
