@@ -6,6 +6,7 @@ import cv2
 
 from facetoy.face_detection import FaceDetectorOpenCV
 from facetoy.io import get_camera_stream
+from facetoy.utils.face_transform import funhouse_mirror_effect
 from facetoy.utils.vis import plot_rectangles
 
 cv2_path = Path(cv2.__file__).parent
@@ -33,6 +34,10 @@ def main() -> None:
 
             # Detect faces in the current frame
             faces = face_detector.forward(frame)
+            for x, y, w, h in faces:
+                face_image = frame[y : y + h, x : x + w]
+                face_transformed = funhouse_mirror_effect(face_image, distortion_strength=0.5)
+                frame[y : y + h, x : x + w] = face_transformed
 
             # Draw bounding boxes around detected faces
             result_frame = plot_rectangles(frame, faces, color=(0, 255, 0), thickness=2)  # Green color
@@ -66,7 +71,7 @@ def main() -> None:
 def test_single_image() -> None:
     """Test face detection on a single image file."""
     # You can test with your own image file
-    image_path = "test_image.jpg"
+    image_path = "tests/data/movie.jpeg"
 
     try:
         # Load image
@@ -86,7 +91,6 @@ def test_single_image() -> None:
         result_image = plot_rectangles(image, faces)
 
         # Save result
-        cv2.imwrite("face_detection_result.jpg", result_image)
         print("Result saved as face_detection_result.jpg")
 
         # Display result
