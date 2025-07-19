@@ -1,6 +1,7 @@
 .mypy_cache/
 .pytest_cache/
-__pycache__/
+facetoy.egg-info/*
+**/__pycache__/
 .venv/
 *.egg-info/
 *.pyc
