@@ -1,15 +1,10 @@
 """OpenCV-based face detection implementation."""
 
+from pathlib import Path
+from typing import List, Optional, Tuple
+
 import cv2
 import numpy as np
-
-
-
-
-
-
-from typing import List, Tuple, Optional
-from pathlib import Path
 
 
 class FaceDetectorOpenCV:
