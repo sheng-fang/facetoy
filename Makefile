@@ -1,4 +1,3 @@
-
 requirements-all:
 	$(MAKE) requirements-txt
 	$(MAKE) requirements-txt-dev

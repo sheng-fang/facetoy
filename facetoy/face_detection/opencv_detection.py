@@ -14,8 +14,8 @@ class FaceDetectorOpenCV:
     """
     OpenCV-based face detector supporting multiple model types.
 
-    This class provides face detection using various OpenCV cascade classifiers
-    and DNN models. It returns bounding boxes for detected faces in the input image.
+    This class provides face detection using various OpenCV cascade classifiers.
+    It returns bounding boxes for detected faces in the input image.
     """
 
     SUPPORTED_MODELS = {
