@@ -29,6 +29,7 @@ dev = [
     "flake8",
     "mypy",
     "pre-commit",
+    "isort>=5.13.2",
 ]
 docs = [
     "sphinx",
@@ -46,7 +47,6 @@ include = ["facetoy*"]
 
 [tool.black]
 line-length = 120 
-target-version = ['py38']
 include = '\.pyi?$'
 extend-exclude = '''
 /(
