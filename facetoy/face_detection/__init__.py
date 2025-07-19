@@ -1,3 +1,5 @@
 """Face detection module."""
 
-# Face detection functionality will be implemented here
+from .opencv_detection import FaceDetectorOpenCV
+
+__all__ = ["FaceDetectorOpenCV"]
