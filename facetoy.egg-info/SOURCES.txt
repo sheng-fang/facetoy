@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+facetoy/__init__.py
+facetoy.egg-info/PKG-INFO
+facetoy.egg-info/SOURCES.txt
+facetoy.egg-info/dependency_links.txt
+facetoy.egg-info/requires.txt
+facetoy.egg-info/top_level.txt
+facetoy/face_detection/__init__.py
+facetoy/io/__init__.py
+facetoy/io/camera.py
+tests/test_camera.py

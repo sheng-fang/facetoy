@@ -1,0 +1,126 @@
+# Facetoy
+
+A Python package for face detection and image processing.
+
+## Installation
+
+```bash
+# Install in development mode
+pip install -e ".[dev]"
+```
+
+## Quick Start
+
+### Camera Stream
+
+Use the `get_camera_stream` function to capture images from your camera:
+
+```python
+import cv2
+from facetoy.io import get_camera_stream
+
+# Basic usage - stream from default camera
+for frame in get_camera_stream():
+    cv2.imshow('Camera', frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cv2.destroyAllWindows()
+```
+
+### Custom Resolution and FPS
+
+```python
+# Stream with custom settings
+for frame in get_camera_stream(camera_index=0, width=640, height=480, fps=30):
+    # Process your frame here
+    cv2.imshow('Camera', frame)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cv2.destroyAllWindows()
+```
+
+### Capture Single Frame
+
+```python
+from facetoy.io.camera import capture_single_frame
+
+# Capture one frame
+frame = capture_single_frame()
+cv2.imwrite('snapshot.jpg', frame)
+```
+
+### Check Available Cameras
+
+```python
+from facetoy.io.camera import get_available_cameras
+
+cameras = get_available_cameras()
+print(f"Available cameras: {cameras}")
+```
+
+## API Reference
+
+### `get_camera_stream(camera_index=0, width=None, height=None, fps=None)`
+
+Generate images from camera stream one by one.
+
+**Parameters:**
+- `camera_index` (int): Index of the camera device (default: 0)
+- `width` (int, optional): Desired frame width in pixels
+- `height` (int, optional): Desired frame height in pixels  
+- `fps` (int, optional): Desired frames per second
+
+**Yields:**
+- `np.ndarray`: Camera frame as BGR image array
+
+**Raises:**
+- `RuntimeError`: If camera cannot be opened
+
+### `capture_single_frame(camera_index=0, width=None, height=None)`
+
+Capture a single frame from the camera.
+
+**Returns:**
+- `np.ndarray`: Single camera frame as BGR image array
+
+### `get_available_cameras()`
+
+Get a list of available camera indices.
+
+**Returns:**
+- `list[int]`: List of available camera indices
+
+## Examples
+
+See the `examples/` directory for more usage examples:
+
+```bash
+python examples/camera_stream_demo.py
+```
+
+## Development
+
+```bash
+# Install development dependencies
+pip install -e ".[dev]"
+
+# Run tests
+pytest
+
+# Format code
+black facetoy/
+
+# Type checking
+mypy facetoy/
+```
+
+## Requirements
+
+- Python 3.8+
+- OpenCV (`opencv-python`)
+- NumPy
+- Pillow
+
+## License
+
+MIT License
