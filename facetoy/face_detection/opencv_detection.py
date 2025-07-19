@@ -1,7 +1,7 @@
 """OpenCV-based face detection implementation."""
 
 from pathlib import Path
-from typing import List, Optional, Tuple
+from typing import List, Optional, Tuple, Union
 
 import cv2
 import numpy as np
@@ -25,7 +25,7 @@ class FaceDetectorOpenCV:
         "lbp_frontalface": CV_PKG_PATH / "data/lbpcascade_frontalface.xml",
     }
 
-    def __init__(self, model_type: str = "haar_frontalface_default", model_path: Optional[str] = None):
+    def __init__(self, model_type: str = "haar_frontalface_default", model_path: Optional[Union[str, Path]] = None):
         """
         Initialize the face detector.
 
@@ -53,10 +53,10 @@ class FaceDetectorOpenCV:
 
     def _load_cascade_model(self) -> cv2.CascadeClassifier:
         """Load Haar or LBP cascade classifier."""
-        detector = cv2.CascadeClassifier(self.model_path)
+        detector = cv2.CascadeClassifier(str(self.model_path))
 
         if detector.empty():
-            raise RuntimeError(f"Failed to load cascade classifier from: {cascade_path}")
+            raise RuntimeError(f"Failed to load cascade classifier from: {str(self.model_path)}")
 
         return detector
 
@@ -66,7 +66,6 @@ class FaceDetectorOpenCV:
         scale_factor: float = 1.1,
         min_neighbors: int = 5,
         min_size: Tuple[int, int] = (30, 30),
-        confidence_threshold: float = 0.5,
     ) -> List[Tuple[int, int, int, int]]:
         """
         Detect faces in the input image and return bounding boxes.
