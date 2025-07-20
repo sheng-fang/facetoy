@@ -7,6 +7,8 @@ import cv2
 import numpy as np
 from loguru import logger
 
+from facetoy.wrappers.base import FacePrediction
+
 CV_PKG_PATH = Path(cv2.__file__).parent
 
 
@@ -60,13 +62,22 @@ class FaceDetectorOpenCV:
 
         return detector
 
+    def __call__(
+        self,
+        image: np.ndarray,
+        scale_factor: float = 1.1,
+        min_neighbors: int = 5,
+        min_size: Tuple[int, int] = (30, 30),
+    ) -> List[FacePrediction]:
+        return self.forward(image, scale_factor=scale_factor, min_neighbors=min_neighbors, min_size=min_size)
+
     def forward(
         self,
         image: np.ndarray,
         scale_factor: float = 1.1,
         min_neighbors: int = 5,
         min_size: Tuple[int, int] = (30, 30),
-    ) -> List[Tuple[int, int, int, int]]:
+    ) -> List[FacePrediction]:
         """
         Detect faces in the input image and return bounding boxes.
 
@@ -96,7 +107,7 @@ class FaceDetectorOpenCV:
 
     def _detect_cascade(
         self, image: np.ndarray, scale_factor: float, min_neighbors: int, min_size: Tuple[int, int]
-    ) -> List[Tuple[int, int, int, int]]:
+    ) -> List[FacePrediction]:
         """Detect faces using cascade classifier."""
         # Convert to grayscale for cascade detection
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
@@ -107,7 +118,10 @@ class FaceDetectorOpenCV:
         )
 
         # Convert to list of tuples
-        return [(int(x), int(y), int(w), int(h)) for x, y, w, h in faces]
+        return [
+            FacePrediction(bbox_xywh=(int(x), int(y), int(w), int(h)), landmarks=None, confidence=None)
+            for x, y, w, h in faces
+        ]
 
     def get_model_info(self) -> dict:
         """
