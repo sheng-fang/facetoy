@@ -18,9 +18,9 @@ class FaceDetectorInferenceConfig(BaseModel):
     min_size: List[int]  # Expects a list of two integers [width, height]
 
 
-class FtMirrorConfig(BaseModel):
+class FunhouseMirrorInferenceConfig(BaseModel):
     """
-    Pydantic model for the 'ft_mirror' section within 'INFERENCE_CFG'.
+    Pydantic model for the 'funhouse_mirror_effect' section within 'INFERENCE_CFG'.
     """
 
     distortion_strength: int
@@ -35,7 +35,7 @@ class InferenceConfig(BaseModel):
     """
 
     face_detector: FaceDetectorInferenceConfig
-    ft_mirror: FtMirrorConfig
+    funhouse_mirror_effect: FunhouseMirrorInferenceConfig
 
 
 # --- STATIC_CFG Models ---
