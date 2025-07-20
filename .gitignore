@@ -10,3 +10,4 @@ facetoy.egg-info/*
 *.db
 .coverage
 coverage.*
+**/.DS_Store
