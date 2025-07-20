@@ -29,13 +29,21 @@ class FunhouseMirrorInferenceConfig(BaseModel):
     radius: Optional[int] = None  # Optional, as it can be null
 
 
+class FaceTransformInferenceConfig(BaseModel):
+    """
+    Pydantic model for the 'face_transform' section within 'INFERENCE_CFG'.
+    """
+
+    funhouse_mirror_effect: FunhouseMirrorInferenceConfig
+
+
 class InferenceConfig(BaseModel):
     """
     Pydantic model for the 'INFERENCE_CFG' section.
     """
 
     face_detector: FaceDetectorInferenceConfig
-    funhouse_mirror_effect: FunhouseMirrorInferenceConfig
+    face_transform: FaceTransformInferenceConfig
 
 
 # --- STATIC_CFG Models ---
