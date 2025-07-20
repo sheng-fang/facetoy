@@ -4,12 +4,12 @@ import numpy as np
 
 
 def funhouse_mirror_effect(
-    image: np.ndarray[np.uint8],
+    image: np.ndarray,
     distortion_strength: float = 0.8,
     center_x: Optional[int] = None,
     center_y: Optional[int] = None,
     radius: Optional[int] = None,
-) -> np.ndarray[np.uint8]:
+) -> np.ndarray:
     height, width, _ = image.shape
     output_img = np.zeros_like(image)
     center_x = center_x if center_x is not None else width // 2
@@ -31,7 +31,7 @@ def funhouse_mirror_effect(
                 if 0 <= original_x < width and 0 <= original_y < height:
                     output_img[y, x] = image[original_y, original_x]
                 else:
-                    output_img[y, x] = [0, 0, 0]  # 黑色
+                    output_img[y, x] = [0, 0, 0]
             else:
                 output_img[y, x] = image[y, x]
 

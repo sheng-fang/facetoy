@@ -7,7 +7,7 @@ name = "facetoy"
 version = "0.1.0"
 description = "A Python package for face detection and image processing"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.11"
 license = {text = "MIT"}
 authors = [
     {name = "Sheng FANG"},
@@ -16,9 +16,13 @@ keywords = ["face-detection", "computer-vision", "image-processing"]
 
 
 dependencies = [
+    "loguru>=0.7.3",
     "numpy",
     "opencv-python",
     "pillow",
+    "pydantic>=2.10.6",
+    "pydantic-yaml>=1.4.0",
+    "pyyaml>=6.0.2",
 ]
 
 [project.optional-dependencies]
@@ -31,6 +35,8 @@ dev = [
     "pre-commit",
     "isort>=5.13.2",
     "loguru>=0.7.3",
+    "ipykernel>=6.29.5",
+    "matplotlib>=3.10.3",
 ]
 docs = [
     "sphinx",
@@ -66,22 +72,9 @@ extend-exclude = '''
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 python_files = ["test_*.py", "*_test.py"]
-addopts = "--cov=facetoy --cov-report=term-missing --cov-report=xml"
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
 disallow_untyped_defs = true
-
-[tool.coverage.run]
-source = ["facetoy"]
-omit = ["*/tests/*"]
-
-[tool.coverage.report]
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "raise AssertionError",
-    "raise NotImplementedError",
-]

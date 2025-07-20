@@ -8,3 +8,6 @@ facetoy.egg-info/*
 *.pyo
 *.pyd
 *.db
+.coverage
+coverage.*
+**/.DS_Store

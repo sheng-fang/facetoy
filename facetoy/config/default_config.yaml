@@ -1,0 +1,17 @@
+STATIC_CFG:
+  face_detector:
+    wrapper: FaceDetectorOpenCV
+    model_type: haar_frontalface
+    model_path: null
+INFERENCE_CFG:
+  face_detector:
+    scale_factor: 1.1
+    min_neighbors: 5
+    min_size: [30, 30]
+  face_transform:
+    funhouse_mirror_effect:
+      use: false
+      distortion_strength: 1.8
+      center_x: null
+      center_y: null
+      radius: null
