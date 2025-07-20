@@ -10,7 +10,8 @@ INFERENCE_CFG:
     min_size: [30, 30]
   face_transform:
     funhouse_mirror_effect:
-      distortion_strength: 2
+      use: false
+      distortion_strength: 1.8
       center_x: null
       center_y: null
       radius: null
