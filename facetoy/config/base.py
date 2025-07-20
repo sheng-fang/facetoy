@@ -23,6 +23,7 @@ class FunhouseMirrorInferenceConfig(BaseModel):
     Pydantic model for the 'funhouse_mirror_effect' section within 'INFERENCE_CFG'.
     """
 
+    use: bool
     distortion_strength: float
     center_x: Optional[int] = None  # Optional, as it can be null
     center_y: Optional[int] = None  # Optional, as it can be null
