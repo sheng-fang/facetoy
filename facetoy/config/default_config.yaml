@@ -8,8 +8,9 @@ INFERENCE_CFG:
     scale_factor: 1.1
     min_neighbors: 5
     min_size: [30, 30]
-  funhouse_mirror_effect:
-    distortion_strength: 2
-    center_x: null
-    center_y: null
-    radius: null
+  face_transform:
+    funhouse_mirror_effect:
+      distortion_strength: 2
+      center_x: null
+      center_y: null
+      radius: null
