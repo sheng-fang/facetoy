@@ -4,10 +4,10 @@ from pathlib import Path
 
 import cv2
 
-from facetoy.face_detection import FaceDetectorOpenCV
 from facetoy.io import get_camera_stream
 from facetoy.utils.face_transform import funhouse_mirror_effect
 from facetoy.utils.vis import plot_rectangles
+from facetoy.wrappers import FaceDetectorOpenCV
 
 cv2_path = Path(cv2.__file__).parent
 
